@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -142,8 +152,7 @@
     {
       "collapsed": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,
@@ -173,8 +182,7 @@
         }
       ],
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "editable": true,
       "error": false,
@@ -253,8 +261,7 @@
         }
       ],
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "editable": true,
       "error": false,
@@ -328,8 +335,7 @@
     {
       "collapsed": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,
@@ -360,8 +366,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "decimals": 2,
       "description": "",
@@ -492,8 +497,7 @@
         }
       ],
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "editable": true,
@@ -568,8 +572,7 @@
     {
       "collapsed": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,
@@ -593,8 +596,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "editable": true,
       "error": false,
@@ -632,8 +634,7 @@
     {
       "collapsed": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,
@@ -661,8 +662,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "decimals": 2,
       "editable": true,
@@ -770,8 +770,7 @@
     {
       "collapsed": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,
@@ -799,8 +798,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "decimals": 2,
       "editable": true,
@@ -910,8 +908,7 @@
     {
       "collapsed": false,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,
@@ -941,8 +938,7 @@
         }
       ],
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "editable": true,
       "error": false,
@@ -1228,8 +1224,7 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,
@@ -2636,8 +2631,7 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "PFToC7FpB3"
+        "uid": "${DS_PROMETHEUS}"
       },
       "gridPos": {
         "h": 1,

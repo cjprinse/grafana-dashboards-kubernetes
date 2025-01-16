@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -24780,8 +24790,7 @@
           "value": "master8-1"
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(mysql_up{cluster=~\"$cluster\",service_name=~\"$service_name\"}, node_name)",
         "hide": 2,
@@ -24814,8 +24823,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, cluster)",
         "hide": 0,
@@ -24844,8 +24852,7 @@
           "value": "master1"
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(mysql_up{cluster=~\"$cluster\"},service_name)",
         "hide": 0,
@@ -24875,8 +24882,7 @@
           "value": "8.0.36-28"
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "query_result(mysql_version_info{cluster=~\"$cluster\",service_name=~\"$service_name\"})",
         "hide": 2,
@@ -24909,8 +24915,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, environment)",
         "hide": 2,
@@ -24943,8 +24948,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, replication_set)",
         "hide": 2,
@@ -24977,8 +24981,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(pg_stat_database_tup_fetched{cluster=~\"$cluster\",service_name=~\"$service_name\",datname!~\"template.*|postgres\"},datname)",
         "hide": 2,
@@ -25011,8 +25014,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, node_type)",
         "hide": 2,
@@ -25045,8 +25047,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, service_type)",
         "hide": 2,
@@ -25079,8 +25080,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(mysql_info_schema_user_statistics_connected_time_seconds_total{service_name=\"$service_name\"},user)",
         "hide": 2,
@@ -25113,8 +25113,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
-          "uid": "PFToC7FpB3"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, schema)",
         "hide": 2,
