@@ -9,45 +9,6 @@
       "pluginName": "Prometheus"
     }
   ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.4.3"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph (old)",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -59,7 +20,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "Annotations \u0026 Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -70,10 +31,11 @@
       }
     ]
   },
+  "description": "redis_exporter for redis",
   "editable": true,
   "fiscalYearStartMonth": 0,
+  "gnetId": 18345,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -119,17 +81,19 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "increase(redis_commands_processed_total{instance=\"$instance\"}[3m])/180",
+          "expr": "increase(redis_commands_processed_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[3m])/180",
           "format": "table",
           "instant": false,
           "interval": "",
@@ -177,6 +141,8 @@
       },
       "id": 6,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -187,16 +153,17 @@
         },
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
+        "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_net_input_bytes_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_net_input_bytes_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "interval": "",
           "legendFormat": "Input",
           "refId": "A"
@@ -206,7 +173,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_net_output_bytes_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_net_output_bytes_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "hide": false,
           "interval": "",
           "legendFormat": "Output",
@@ -249,8 +216,10 @@
       "id": 9,
       "options": {
         "displayMode": "lcd",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -260,16 +229,18 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "sizing": "auto",
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_memory_used_bytes{instance=\"$instance\"}",
+          "expr": "redis_memory_used_bytes{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "Used Memory ",
           "refId": "A"
@@ -279,7 +250,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_memory_used_peak_bytes{instance=\"$instance\"}",
+          "expr": "redis_memory_used_peak_bytes{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Used Memory Peak",
@@ -290,7 +261,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_memory_used_lua_bytes{instance=\"$instance\"}",
+          "expr": "redis_memory_used_lua_bytes{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Used Memory Lua",
@@ -301,7 +272,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_memory_used_dataset_bytes{instance=\"$instance\"}",
+          "expr": "redis_memory_used_dataset_bytes{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Used Memory Dataset",
@@ -312,7 +283,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_memory_used_overhead_bytes{instance=\"$instance\"}",
+          "expr": "redis_memory_used_overhead_bytes{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Used Memory Overhead",
@@ -323,7 +294,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_memory_used_rss_bytes{instance=\"$instance\"}",
+          "expr": "redis_memory_used_rss_bytes{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Used Memory Rss",
@@ -335,7 +306,8 @@
     },
     {
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "type": "victoriametrics-datasource",
+        "uid": "PFToC7FpB3"
       },
       "fieldConfig": {
         "defaults": {
@@ -375,19 +347,23 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "redis_uptime_in_seconds{instance=\"$instance\"}",
+          "expr": "redis_uptime_in_seconds{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -402,8 +378,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -448,19 +422,19 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "name"
+        "textMode": "name",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_instance_info{instance=\"$instance\"}",
+          "expr": "redis_instance_info{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "{{role}}",
           "refId": "A"
@@ -477,8 +451,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -523,19 +495,19 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_connected_clients{instance=\"$instance\"}",
+          "expr": "redis_connected_clients{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -552,8 +524,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -598,19 +568,19 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "name"
+        "textMode": "name",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_instance_info{instance=\"$instance\"}",
+          "expr": "redis_instance_info{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "{{redis_version}}",
           "refId": "A"
@@ -627,8 +597,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -687,19 +655,19 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "value"
+        "textMode": "value",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_up{instance=\"$instance\"}",
+          "expr": "redis_up{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -716,8 +684,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -762,19 +728,19 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "sum(redis_db_keys{instance=\"$instance\"})",
+          "expr": "sum(redis_db_keys{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -791,8 +757,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -823,8 +787,10 @@
       "id": 7,
       "options": {
         "displayMode": "lcd",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -834,30 +800,28 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "sizing": "auto",
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_expired_keys_total{instance=\"$instance\"}[3m])",
+          "expr": "rate(redis_expired_keys_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[3m])",
           "interval": "",
           "legendFormat": "expired keys",
           "refId": "A"
         },
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_evicted_keys_total{instance=\"$instance\"}[3m])",
+          "expr": "rate(redis_evicted_keys_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[3m])",
           "hide": false,
           "interval": "",
           "legendFormat": "evicted keys",
@@ -869,8 +833,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -901,8 +863,10 @@
       "id": 10,
       "options": {
         "displayMode": "lcd",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -912,30 +876,28 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "sizing": "auto",
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_keyspace_hits_total{instance=\"$instance\"}",
+          "expr": "redis_keyspace_hits_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "Hits",
           "refId": "A"
         },
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_keyspace_misses_total{instance=\"$instance\"}",
+          "expr": "redis_keyspace_misses_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "Misses",
@@ -947,8 +909,6 @@
     },
     {
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
@@ -994,19 +954,19 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "name"
+        "textMode": "name",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_instance_info{instance=\"$instance\"}",
+          "expr": "redis_instance_info{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "{{maxmemory_policy}}",
           "refId": "A"
@@ -1027,8 +987,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1063,7 +1021,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1074,24 +1032,20 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "100 * (rate(redis_cpu_sys_children_seconds_total{instance=\"$instance\"}[5m]) + rate(redis_cpu_sys_seconds_total{instance=\"$instance\"}[5m]))",
+          "expr": "100 * (rate(redis_cpu_sys_children_seconds_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m]) + rate(redis_cpu_sys_seconds_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m]))",
           "interval": "",
           "legendFormat": "System",
           "refId": "A"
         },
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "100 * (rate(redis_cpu_user_children_seconds_total{instance=\"$instance\"}[5m]) + rate(redis_cpu_user_seconds_total{instance=\"$instance\"}[5m]))",
+          "expr": "100 * (rate(redis_cpu_user_children_seconds_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m]) + rate(redis_cpu_user_seconds_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m]))",
           "interval": "",
           "legendFormat": "User",
           "refId": "B"
@@ -1136,8 +1090,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1172,7 +1124,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1183,12 +1135,10 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "topk(5, irate(redis_commands_total{instance=\"$instance\"} [5m]))",
+          "expr": "topk(5, irate(redis_commands_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"} [5m]))",
           "interval": "",
           "legendFormat": "{{cmd}}",
           "refId": "A"
@@ -1233,8 +1183,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1269,7 +1217,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1280,24 +1228,20 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_net_input_bytes_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_net_input_bytes_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "interval": "",
           "legendFormat": "Inbound",
           "refId": "A"
         },
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_net_output_bytes_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_net_output_bytes_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "interval": "",
           "legendFormat": "Outbound",
           "refId": "B"
@@ -1342,8 +1286,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1378,7 +1320,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1389,12 +1331,10 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_connections_received_total{instance=\"$instance\"}[5m]) ",
+          "expr": "rate(redis_connections_received_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m]) ",
           "interval": "",
           "legendFormat": "Inbound",
           "refId": "A"
@@ -1439,8 +1379,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1475,7 +1413,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1486,12 +1424,10 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_db_keys{instance=\"$instance\"}",
+          "expr": "redis_db_keys{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "{{db}}",
           "refId": "A"
@@ -1536,8 +1472,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1572,7 +1506,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1583,8 +1517,6 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
@@ -1633,8 +1565,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1669,7 +1599,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1680,23 +1610,19 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_expired_keys_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_expired_keys_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "interval": "",
           "legendFormat": "Expired",
           "refId": "A"
         },
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(redis_evicted_keys_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_evicted_keys_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "interval": "",
           "legendFormat": "Evicted",
           "refId": "B"
@@ -1741,8 +1667,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1777,7 +1701,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1788,12 +1712,10 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "100 * rate(redis_keyspace_hits_total{instance=\"$instance\"}[5m])   / (rate(redis_keyspace_misses_total{instance=\"$instance\"}[5m]) + rate(redis_keyspace_hits_total{instance=\"$instance\"}[5m])) ",
+          "expr": "100 * rate(redis_keyspace_hits_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])   / (rate(redis_keyspace_misses_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m]) + rate(redis_keyspace_hits_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])) ",
           "interval": "",
           "legendFormat": "Hit",
           "refId": "A"
@@ -1838,8 +1760,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -1874,7 +1794,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1885,24 +1805,20 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_connected_clients{instance=\"$instance\"}",
+          "expr": "redis_connected_clients{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "Clients",
           "refId": "A"
         },
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_config_maxclients{instance=\"$instance\"}",
+          "expr": "redis_config_maxclients{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "Max Clients",
           "refId": "B"
@@ -1947,8 +1863,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
@@ -1984,7 +1898,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1995,24 +1909,20 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "redis_blocked_clients{instance=\"$instance\"}",
+          "expr": "redis_blocked_clients{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}",
           "interval": "",
           "legendFormat": "Blocked",
           "refId": "A"
         },
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_rejected_connections_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_rejected_connections_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "interval": "",
           "legendFormat": "Rejected",
           "refId": "B"
@@ -2057,8 +1967,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -2093,7 +2001,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2104,11 +2012,9 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(redis_commands_duration_seconds_total{instance=\"$instance\"}[5m])) / sum(rate(redis_commands_processed_total{instance=\"$instance\"}[5m]))",
+          "expr": "sum(rate(redis_commands_duration_seconds_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])) / sum(rate(redis_commands_processed_total{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m]))",
           "interval": "",
           "legendFormat": "Response Time",
           "refId": "A"
@@ -2151,8 +2057,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-
-
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -2187,7 +2091,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2198,12 +2102,10 @@
       "targets": [
         {
           "datasource": {
-
-
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "rate(redis_slowlog_length{instance=\"$instance\"}[5m])",
+          "expr": "rate(redis_slowlog_length{cluster=~\"$cluster\",namespace=~\"$namespace\",service=~\"$service\",pod=~\"$pod\"}[5m])",
           "interval": "",
           "legendFormat": "Response Time",
           "refId": "A"
@@ -2245,19 +2147,34 @@
   ],
   "refresh": "1m",
   "revision": 1,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
       {
+        "current": {
+          "selected": false,
+          "text": "VictoriaMetrics",
+          "value": "PFToC7FpB3"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "DS_PROMETHEUS",
+        "options": [],
+        "query": "victoriametrics-datasource",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
         "current": {},
         "datasource": {
-
-
+          "type": "victoriametrics-datasource",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(redis_up, job)",
+        "definition": "label_values(redis_up,cluster)",
         "hide": 0,
         "includeAll": false,
         "label": "Cluster",
@@ -2265,8 +2182,9 @@
         "name": "cluster",
         "options": [],
         "query": {
-          "query": "label_values(redis_up, job)",
-          "refId": "StandardVariableQuery"
+          "qryType": 1,
+          "query": "label_values(redis_up,cluster)",
+          "refId": "VariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -2275,20 +2193,77 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "prod-ecomm-platform",
+          "value": "prod-ecomm-platform"
+        },
+        "datasource": {
+          "type": "victoriametrics-datasource",
+          "uid": "PFToC7FpB3"
+        },
+        "definition": "label_values(redis_up{cluster=~\"$cluster\"},namespace)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "namespace",
+        "multi": true,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(redis_up{cluster=~\"$cluster\"},namespace)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "rfr-cache",
+          "value": "rfr-cache"
+        },
         "datasource": {
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values({job=\"$cluster\"},instance)",
+        "definition": "label_values(redis_up{cluster=~\"$cluster\", namespace=~\"$namespace\"},service)",
         "hide": 0,
-        "includeAll": false,
-        "label": "Instance",
-        "multi": false,
-        "name": "instance",
+        "includeAll": true,
+        "label": "service",
+        "multi": true,
+        "name": "service",
         "options": [],
         "query": {
-          "query": "label_values({job=\"$cluster\"},instance)",
-          "refId": "StandardVariableQuery"
+          "qryType": 1,
+          "query": "label_values(redis_up{cluster=~\"$cluster\", namespace=~\"$namespace\"},service)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "rfr-session-cms-0",
+          "value": "rfr-session-cms-0"
+        },
+        "definition": "label_values(redis_up{cluster=~\"$cluster\", namespace=~\"$namespace\", service=~\"$service\"},pod)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "pod",
+        "multi": true,
+        "name": "pod",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(redis_up{cluster=~\"$cluster\", namespace=~\"$namespace\", service=~\"$service\"},pod)",
+          "refId": "VariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -2307,7 +2282,5 @@
   "title": "Redis Overview",
   "uid": "R7HGKm27k",
   "version": 7,
-  "weekStart": "",
-  "gnetId": 18345,
-  "description": "redis_exporter for redis"
+  "weekStart": ""
 }
