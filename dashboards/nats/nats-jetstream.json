@@ -2,55 +2,25 @@
   "__inputs": [
     {
       "name": "DS_PROMETHEUS",
-      "label": " NATS-Prometheus",
+      "label": "Prometheus",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
       "pluginName": "Prometheus"
     }
   ],
-  "__elements": [],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "8.3.4"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "Annotations \u0026 Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -65,12 +35,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": null,
-  "iteration": 1642544826470,
   "links": [],
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 3,
@@ -106,6 +77,8 @@
       },
       "id": 28,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -115,17 +88,26 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(gnatsd_varz_jetstream_stats_storage{cluster=~\"$cluster\",server_id=~\"$server\"})/sum(gnatsd_varz_jetstream_config_max_storage{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nats_varz_jetstream_stats_storage{cluster=~\"$cluster\",server_id=~\"$server\"})/sum(nats_varz_jetstream_config_max_storage{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
+          "range": true,
           "refId": "A"
         },
         {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "",
           "interval": "",
           "legendFormat": "",
@@ -136,6 +118,9 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -172,12 +157,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(gnatsd_varz_jetstream_stats_storage{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(nats_varz_jetstream_stats_storage{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -187,6 +177,9 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 3,
@@ -222,6 +215,8 @@
       },
       "id": 31,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -231,17 +226,24 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(gnatsd_varz_jetstream_stats_memory{cluster=~\"$cluster\",server_id=~\"$server\"})/sum(gnatsd_varz_jetstream_config_max_memory{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(nats_varz_jetstream_stats_memory{cluster=~\"$cluster\",server_id=~\"$server\"})/sum(nats_varz_jetstream_config_max_memory{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "",
           "interval": "",
           "legendFormat": "",
@@ -252,6 +254,9 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -288,12 +293,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(gnatsd_varz_jetstream_stats_memory{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(nats_varz_jetstream_stats_memory{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -303,6 +313,9 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -343,12 +356,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(gnatsd_varz_connections{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(nats_varz_connections{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -358,6 +376,9 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -394,12 +415,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(gnatsd_varz_jetstream_config_max_storage{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(nats_varz_jetstream_config_max_storage{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -409,6 +435,9 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -445,12 +474,17 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(gnatsd_varz_jetstream_config_max_memory{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(nats_varz_jetstream_config_max_memory{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -460,6 +494,9 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -499,14 +536,21 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "expr": "sum(jetstream_server_total_consumers{cluster=~\"$cluster\",server_id=~\"$server\"})",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nats_server_total_consumers{cluster=~\"$cluster\",server_id=~\"$server\"})",
           "interval": "",
           "legendFormat": "",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -515,6 +559,9 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -523,16 +570,30 @@
       },
       "id": 19,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Stream metrics",
       "type": "row"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -544,6 +605,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -589,18 +651,25 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "expr": "sum(jetstream_stream_total_bytes) by (stream_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nats_stream_total_bytes{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\"}) by (stream_name)",
           "interval": "",
           "legendFormat": "{{stream_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -608,12 +677,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -625,6 +700,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -670,18 +746,25 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "expr": "sum(jetstream_stream_total_messages) by (stream_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nats_stream_total_messages{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\"}) by (stream_name)",
           "interval": "",
           "legendFormat": "{{stream_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -689,12 +772,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -706,6 +795,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -751,19 +841,26 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "expr": "sum(rate(jetstream_stream_last_seq{cluster=~\"$cluster\",server_id=~\"$server\",stream_name=~\"$stream\"}[$__rate_interval])) by (stream_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(nats_stream_last_seq{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\"}[$__rate_interval])) by (stream_name)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{stream_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -772,6 +869,9 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -780,17 +880,31 @@
       },
       "id": 23,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Consumer Metrics",
       "type": "row"
     },
     {
-      "description": "Messages added & processed per minute per consumer",
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Messages added \u0026 processed per minute per consumer",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -802,6 +916,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -847,16 +962,22 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "expr": "sum(rate(jetstream_consumer_num_pending{cluster=~\"$cluster\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])+rate(jetstream_consumer_delivered_consumer_seq{cluster=~\"$cluster\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(nats_consumer_num_pending{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])+rate(nats_consumer_delivered_consumer_seq{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name)",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -865,10 +986,15 @@
           "refId": "B"
         },
         {
-          "expr": "- sum(rate(jetstream_consumer_delivered_consumer_seq{cluster=~\"$cluster\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "- sum(rate(nats_consumer_delivered_consumer_seq{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{consumer_name}} -",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -876,12 +1002,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -893,6 +1025,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -938,19 +1071,26 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "expr": "sum(jetstream_consumer_delivered_consumer_seq{cluster=~\"$cluster\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}) by (consumer_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nats_consumer_delivered_consumer_seq{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}) by (consumer_name)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{consumer_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -958,12 +1098,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -975,6 +1121,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1021,19 +1168,26 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "expr": "sum(jetstream_consumer_num_pending{cluster=~\"$cluster\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}) by (consumer_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nats_consumer_num_pending{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}) by (consumer_name)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{consumer_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1041,12 +1195,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1058,6 +1218,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1104,19 +1265,26 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "expr": "sum(jetstream_consumer_num_ack_pending{cluster=~\"$cluster\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}) by (consumer_name)",
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nats_consumer_num_ack_pending{cluster=~\"$cluster\",namespace=~\"$namespace\",server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}) by (consumer_name)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{consumer_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1125,14 +1293,85 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 34,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
       {
+        "current": {
+          "selected": false,
+          "text": "VictoriaMetrics",
+          "value": "PFToC7FpB3"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "DS_PROMETHEUS",
+        "options": [],
+        "query": "victoriametrics-metrics-datasource",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "etrias-staging.k8s-bizhost.nl",
+          "value": "etrias-staging.k8s-bizhost.nl"
+        },
+        "datasource": {
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(nats_server_total_streams,cluster)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(nats_server_total_streams,cluster)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "stag-ecomm-platform",
+          "value": "stag-ecomm-platform"
+        },
+        "datasource": {
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(nats_server_total_streams{cluster=~\"$cluster\"},namespace)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(nats_server_total_streams{cluster=~\"$cluster\"},namespace)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
         "current": {},
-        "definition": "label_values(jetstream_server_total_streams, server_id)",
+        "datasource": {
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(nats_server_total_streams{cluster=~\"$cluster\", namespace=\"$namespace\"},server_id)",
         "hide": 0,
         "includeAll": true,
         "label": "Server",
@@ -1140,22 +1379,22 @@
         "name": "server",
         "options": [],
         "query": {
-          "query": "label_values(jetstream_server_total_streams, server_id)",
-          "refId": "StandardVariableQuery"
+          "qryType": 1,
+          "query": "label_values(nats_server_total_streams{cluster=~\"$cluster\", namespace=\"$namespace\"},server_id)",
+          "refId": "VariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false,
-        "datasource": "${DS_PROMETHEUS}"
+        "type": "query"
       },
       {
         "current": {},
-        "definition": "label_values(jetstream_stream_last_seq, stream_name)",
+        "datasource": {
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(nats_stream_last_seq{cluster=~\"$cluster\", namespace=~\"$namespace\"},stream_name)",
         "hide": 0,
         "includeAll": true,
         "label": "Stream",
@@ -1163,22 +1402,22 @@
         "name": "stream",
         "options": [],
         "query": {
-          "query": "label_values(jetstream_stream_last_seq, stream_name)",
-          "refId": "StandardVariableQuery"
+          "qryType": 1,
+          "query": "label_values(nats_stream_last_seq{cluster=~\"$cluster\", namespace=~\"$namespace\"},stream_name)",
+          "refId": "VariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false,
-        "datasource": "${DS_PROMETHEUS}"
+        "type": "query"
       },
       {
         "current": {},
-        "definition": "label_values(jetstream_consumer_num_pending, consumer_name)",
+        "datasource": {
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(nats_consumer_num_pending{cluster=~\"$cluster\", namespace=~\"$namespace\", stream_name=~\"$stream\"},consumer_name)",
         "hide": 0,
         "includeAll": true,
         "label": "Consumer",
@@ -1186,18 +1425,15 @@
         "name": "consumer",
         "options": [],
         "query": {
-          "query": "label_values(jetstream_consumer_num_pending, consumer_name)",
-          "refId": "StandardVariableQuery"
+          "qryType": 1,
+          "query": "label_values(nats_consumer_num_pending{cluster=~\"$cluster\", namespace=~\"$namespace\", stream_name=~\"$stream\"},consumer_name)",
+          "refId": "VariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false,
-        "datasource": "${DS_PROMETHEUS}"
+        "type": "query"
       }
     ]
   },
