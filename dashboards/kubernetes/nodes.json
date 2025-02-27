@@ -3684,13 +3684,12 @@
     "list": [
       {
         "current": {},
-        "hide": 2,
+        "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "DS_PROMETHEUS",
         "options": [],
-        "query": "victoriametrics-datasource",
-        "queryValue": "",
+        "query": "victoriametrics-metrics-datasource",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3772,8 +3771,8 @@
         },
         "definition": "label_values(kube_node_info{cluster=~\"$cluster\"},node)",
         "hide": 0,
-        "includeAll": false,
-        "multi": false,
+        "includeAll": true,
+        "multi": true,
         "name": "node",
         "options": [],
         "query": {
