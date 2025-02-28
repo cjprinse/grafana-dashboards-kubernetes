@@ -887,7 +887,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{namespace=~\"$namespace\", image!=\"\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}[$__rate_interval])) by (pod) \u003e 0",
+          "expr": "sum(rate(container_cpu_cfs_throttled_periods_total{namespace=~\"$namespace\", image!=\"\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}[$__rate_interval])) by (pod) \u003e 0",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "range": true,

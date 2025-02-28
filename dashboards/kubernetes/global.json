@@ -1929,7 +1929,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (namespace) \u003e 0",
+          "expr": "sum(rate(container_cpu_cfs_throttled_periods_total{image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (namespace) \u003e 0",
           "interval": "$resolution",
           "legendFormat": "{{ namespace }}",
           "range": true,
