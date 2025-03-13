@@ -3,7 +3,7 @@
     {
       "name": "DS_PROMETHEUS",
       "label": "Prometheus",
-      "description": "redis_exporter",
+      "description": "varnish_exporter",
       "type": "datasource",
       "pluginId": "prometheus",
       "pluginName": "Prometheus"
