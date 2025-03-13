@@ -1560,7 +1560,7 @@
           "text": "VictoriaMetrics",
           "value": "PFToC7FpB3"
         },
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
