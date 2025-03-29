@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -138,119 +148,140 @@
   "liveNow": false,
   "panels": [
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Metrics",
-      "decimals": 0,
-      "editable": true,
-      "error": false,
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Size"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5195CE",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
-      "fill": 0,
-      "fillGradient": 0,
-      "grid": {},
       "gridPos": {
         "h": 4,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "hiddenSeries": false,
       "id": 42,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": true,
-        "min": true,
-        "rightSide": true,
-        "show": false,
-        "sort": "avg",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "nullPointMode": "null",
       "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "10.4.3",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Size",
-          "color": "#5195CE"
+        "legend": {
+          "calcs": [
+            "mean",
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
         }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": true,
+      },
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "(min_over_time(mysql_global_status_wsrep_cluster_size[$interval]) or min_over_time(mysql_global_status_wsrep_cluster_size[5m])) * \non (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "(min_over_time(mysql_global_status_wsrep_cluster_size{cluster=\"$cluster\"}[$interval]) or min_over_time(mysql_global_status_wsrep_cluster_size{cluster=\"$cluster\"}[5m])) * \non (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "Size",
           "metric": "",
+          "range": true,
           "refId": "C",
           "step": 300,
           "target": ""
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Percona XtraDB / Galera Cluster Size",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 5,
-        "value_type": "cumulative"
-      },
       "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": 0,
-          "format": "short",
-          "label": "",
-          "logBase": 2,
-          "min": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "min": 0,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -333,15 +364,20 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "clamp_max(avg by (service_name) ((rate(mysql_global_status_wsrep_flow_control_paused_ns[$interval]) or irate(mysql_global_status_wsrep_flow_control_paused_ns[5m])))/1000000000 * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"}),1)",
+          "expr": "clamp_max(avg by (service_name) ((rate(mysql_global_status_wsrep_flow_control_paused_ns{cluster=\"$cluster\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_paused_ns{cluster=\"$cluster\"}[5m])))/1000000000 * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"}),1)",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -350,7 +386,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -432,14 +471,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "(avg by (service_name) (rate(mysql_global_status_wsrep_flow_control_sent[$interval]) or irate(mysql_global_status_wsrep_flow_control_sent[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "(avg by (service_name) (rate(mysql_global_status_wsrep_flow_control_sent{cluster=\"$cluster\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_sent{cluster=\"$cluster\"}[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -448,7 +492,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -530,14 +577,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_received_bytes[$interval]) or irate(mysql_global_status_wsrep_received_bytes[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\"}[$interval]) or irate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\"}[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -546,7 +598,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -628,14 +683,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_replicated_bytes[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\"}[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\"}[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -644,7 +704,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -726,14 +789,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_local_recv_queue) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_local_recv_queue{cluster=\"$cluster\"}) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -742,7 +810,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -824,14 +895,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_local_send_queue) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_local_send_queue{cluster=\"$cluster\"}) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -840,7 +916,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -922,14 +1001,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_received[$interval]) or irate(mysql_global_status_wsrep_received[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_received{cluster=\"$cluster\"}[$interval]) or irate(mysql_global_status_wsrep_received{cluster=\"$cluster\"}[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -938,7 +1022,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1020,14 +1107,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_replicated[$interval]) or irate(mysql_global_status_wsrep_replicated[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\"}[$interval]) or irate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\"}[5m]))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -1036,13 +1128,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1056,6 +1152,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1080,7 +1177,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1115,14 +1213,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_received_bytes[$interval]) / (rate(mysql_global_status_wsrep_received[$interval]) \u003e 0) or irate(mysql_global_status_wsrep_received_bytes[5m]) / (irate(mysql_global_status_wsrep_received[5m]) \u003e 0))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\"}[$interval]) / (rate(mysql_global_status_wsrep_received{cluster=\"$cluster\"}[$interval]) \u003e 0) or irate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\"}[5m]) / (irate(mysql_global_status_wsrep_received{cluster=\"$cluster\"}[5m]) \u003e 0))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "C",
           "step": 300
         }
@@ -1131,13 +1234,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1151,6 +1258,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1175,7 +1283,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1210,14 +1319,19 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_replicated_bytes[$interval]) / (rate(mysql_global_status_wsrep_replicated[$interval]) \u003e 0) or irate(mysql_global_status_wsrep_replicated_bytes[5m]) / (irate(mysql_global_status_wsrep_replicated[5m]) \u003e 0))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\"}[$interval]) / (rate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\"}[$interval]) \u003e 0) or irate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\"}[5m]) / (irate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\"}[5m]) \u003e 0))) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ service_name }}",
           "metric": "",
+          "range": true,
           "refId": "C",
           "step": 300
         }
@@ -1226,13 +1340,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1246,6 +1364,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1270,7 +1389,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1304,12 +1424,17 @@
       "pluginVersion": "9.2.5",
       "targets": [
         {
-          "datasource": "Metrics",
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_flow_control_interval_low) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_flow_control_interval_low{cluster=\"$cluster\"}) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{service_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1317,13 +1442,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1337,6 +1466,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1361,7 +1491,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1395,12 +1526,17 @@
       "pluginVersion": "9.2.5",
       "targets": [
         {
-          "datasource": "Metrics",
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_flow_control_interval_high) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_flow_control_interval_high{cluster=\"$cluster\"}) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{service_name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1408,13 +1544,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1428,6 +1568,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1452,7 +1593,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1486,32 +1628,47 @@
       "pluginVersion": "9.2.5",
       "targets": [
         {
-          "datasource": "Metrics",
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_ist_receive_seqno_start) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_ist_receive_seqno_start{cluster=\"$cluster\"}) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{service_name}} first",
+          "range": true,
           "refId": "A"
         },
         {
-          "datasource": "Metrics",
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_ist_receive_seqno_current) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_ist_receive_seqno_current{cluster=\"$cluster\"}) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{service_name}} current",
+          "range": true,
           "refId": "B"
         },
         {
-          "datasource": "Metrics",
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_ist_receive_seqno_end) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_ist_receive_seqno_end{cluster=\"$cluster\"}) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{service_name}} last",
+          "range": true,
           "refId": "C"
         }
       ],
@@ -1519,13 +1676,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1539,6 +1700,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1563,7 +1725,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1597,9 +1760,12 @@
       "pluginVersion": "9.2.5",
       "targets": [
         {
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "editorMode": "code",
-          "expr": "avg by (service_name) (avg_over_time(mysql_galera_evs_repl_latency_avg_seconds[$interval])) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) (avg_over_time(mysql_galera_evs_repl_latency_avg_seconds{cluster=\"$cluster\"}[$interval])) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1612,13 +1778,17 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1632,6 +1802,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 4,
@@ -1656,7 +1827,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1690,9 +1862,12 @@
       "pluginVersion": "9.2.5",
       "targets": [
         {
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "editorMode": "code",
-          "expr": "avg by (service_name) (max_over_time(mysql_galera_evs_repl_latency_max_seconds[$interval])) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{wsrep_cluster_name=\"$cluster\"})",
+          "expr": "avg by (service_name) (max_over_time(mysql_galera_evs_repl_latency_max_seconds{cluster=\"$cluster\"}[$interval])) * on (service_name) group_left avg by (service_name) (mysql_galera_variables_info{cluster=\"$cluster\"})",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1715,104 +1890,60 @@
   "templating": {
     "list": [
       {
-        "allFormat": "glob",
-        "auto": true,
-        "auto_count": 200,
-        "auto_min": "1s",
         "current": {
           "selected": false,
-          "text": "auto",
-          "value": "$__auto_interval_interval"
+          "text": "VictoriaMetrics",
+          "value": "PFToC7FpB3"
         },
-        "datasource": "Metrics",
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
-        "label": "Interval",
         "multi": false,
-        "multiFormat": "glob",
-        "name": "interval",
-        "options": [
-          {
-            "selected": true,
-            "text": "auto",
-            "value": "$__auto_interval_interval"
-          },
-          {
-            "selected": false,
-            "text": "1s",
-            "value": "1s"
-          },
-          {
-            "selected": false,
-            "text": "5s",
-            "value": "5s"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "5m",
-            "value": "5m"
-          },
-          {
-            "selected": false,
-            "text": "1h",
-            "value": "1h"
-          },
-          {
-            "selected": false,
-            "text": "6h",
-            "value": "6h"
-          },
-          {
-            "selected": false,
-            "text": "1d",
-            "value": "1d"
-          }
-        ],
-        "query": "1s,5s,1m,5m,1h,6h,1d",
-        "refresh": 2,
+        "name": "DS_PROMETHEUS",
+        "options": [],
+        "query": "victoriametrics-metrics-datasource",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
         "skipUrlSync": false,
-        "type": "interval"
+        "type": "datasource"
       },
       {
-        "allFormat": "glob",
         "current": {
           "selected": false,
           "text": "my_wsrep_cluster",
           "value": "my_wsrep_cluster"
         },
         "datasource": {
-          "uid": "Metrics"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(mysql_galera_variables_info, wsrep_cluster_name)",
+        "definition": "label_values(mysql_galera_status_info,cluster)",
         "hide": 0,
         "includeAll": false,
         "label": "Cluster",
         "multi": false,
-        "multiFormat": "regex values",
         "name": "cluster",
         "options": [],
         "query": {
-          "query": "label_values(mysql_galera_variables_info, wsrep_cluster_name)",
-          "refId": "Metrics-cluster-Variable-Query"
+          "qryType": 1,
+          "query": "label_values(mysql_galera_status_info,cluster)",
+          "refId": "VariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
-        "refresh_on_load": false,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 5,
-        "type": "query",
-        "useTags": false
+        "sort": 0,
+        "type": "query"
       },
       {
         "current": {
           "selected": false,
           "text": "pxc_node__1_5263",
           "value": "pxc_node__1_5263"
+        },
+        "datasource": {
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "PFToC7FpB3"
         },
         "definition": "label_values(mysql_up,service_name)",
         "hide": 0,
@@ -2064,6 +2195,70 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allFormat": "glob",
+        "auto": true,
+        "auto_count": 200,
+        "auto_min": "1s",
+        "current": {
+          "selected": false,
+          "text": "auto",
+          "value": "$__auto_interval_interval"
+        },
+        "datasource": "Metrics",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interval",
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "auto",
+            "value": "$__auto_interval_interval"
+          },
+          {
+            "selected": false,
+            "text": "1s",
+            "value": "1s"
+          },
+          {
+            "selected": false,
+            "text": "5s",
+            "value": "5s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          }
+        ],
+        "query": "1s,5s,1m,5m,1h,6h,1d",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
       }
     ]
   },

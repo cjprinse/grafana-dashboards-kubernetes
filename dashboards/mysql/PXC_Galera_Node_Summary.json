@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -39,7 +49,7 @@
         "hide": true,
         "iconColor": "#6ed0e0",
         "limit": 100,
-        "name": "Annotations & Alerts",
+        "name": "Annotations \u0026 Alerts",
         "showIn": 0,
         "tags": [],
         "target": {
@@ -52,10 +62,9 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": null,
   "links": [
     {
       "icon": "doc",
@@ -141,7 +150,10 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -191,7 +203,6 @@
       "hideTimeOverride": true,
       "id": 50,
       "interval": "$interval",
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "none",
@@ -205,23 +216,30 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "valueSize": 20
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.5",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "calculatedInterval": "10m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "mysql_global_status_wsrep_ready{service_name=~\"$service_name\"}",
+          "expr": "min by (service_name) (mysql_global_status_wsrep_ready{cluster=\"$cluster\", service_name=~\"$service_name\"})",
           "interval": "5m",
           "intervalFactor": 1,
           "legendFormat": "",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -232,7 +250,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -288,7 +309,6 @@
       "hideTimeOverride": true,
       "id": 49,
       "interval": "$interval",
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "none",
@@ -302,24 +322,31 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "valueSize": 20
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.5",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "calculatedInterval": "10m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "mysql_global_status_wsrep_local_state{service_name=~\"$service_name\"}",
+          "expr": "min by (service_name) (mysql_global_status_wsrep_local_state{cluster=\"$cluster\", service_name=~\"$service_name\"})",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
           "legendFormat": "",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -330,7 +357,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -380,7 +410,6 @@
       "hideTimeOverride": true,
       "id": 53,
       "interval": "$interval",
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "none",
@@ -394,24 +423,31 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "valueSize": 20
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.5",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "calculatedInterval": "10m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "mysql_global_variables_wsrep_desync{service_name=~\"$service_name\"}",
+          "expr": "min by (service_name) (mysql_global_variables_wsrep_desync{cluster=\"$cluster\", service_name=~\"$service_name\"})",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
           "legendFormat": "",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -422,7 +458,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -472,7 +511,6 @@
       "hideTimeOverride": true,
       "id": 51,
       "interval": "$interval",
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -486,24 +524,31 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "valueSize": 20
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.5",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "calculatedInterval": "10m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "mysql_global_status_wsrep_cluster_status{service_name=~\"$service_name\"}",
+          "expr": "min by (service_name) (mysql_global_status_wsrep_cluster_status{cluster=\"$cluster\", service_name=~\"$service_name\"})",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
           "legendFormat": "",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -514,7 +559,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -552,7 +600,6 @@
       },
       "id": 48,
       "interval": "$interval",
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "none",
@@ -566,24 +613,31 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "valueSize": 20
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.5",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
           "calculatedInterval": "10m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "avg by (service_name) (mysql_galera_gcache_size_bytes{service_name=~\"$service_name\"})",
+          "expr": "avg by (service_name) (mysql_galera_gcache_size_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"})",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
           "legendFormat": "",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 300
         }
@@ -592,7 +646,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -648,7 +705,6 @@
         "y": 0
       },
       "id": 55,
-      "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
@@ -662,16 +718,21 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {
           "valueSize": 20
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.2.5",
+      "pluginVersion": "10.4.3",
       "targets": [
         {
-          "datasource": "Metrics",
-          "expr": "avg by (service_name) (mysql_global_status_wsrep_flow_control_status{service_name=~\"$service_name\"})",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "avg by (service_name) (mysql_global_status_wsrep_flow_control_status{cluster=\"$cluster\", service_name=~\"$service_name\"})",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -682,7 +743,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows figures for the replication latency on group communication. It measures latency from the time point when a message is sent out to the time point when a message is received. As replication is a group operation, this essentially gives you the slowest ACK and longest RTT in the cluster.",
       "fieldConfig": {
         "defaults": {
@@ -690,6 +754,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -703,6 +768,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -799,9 +865,12 @@
       "pluginVersion": "9.2.5",
       "targets": [
         {
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "editorMode": "code",
-          "expr": "avg by (service_name) (max_over_time(mysql_galera_evs_repl_latency_max_seconds{service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_galera_evs_repl_latency_max_seconds{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (max_over_time(mysql_galera_evs_repl_latency_max_seconds{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_galera_evs_repl_latency_max_seconds{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -811,9 +880,12 @@
           "step": 300
         },
         {
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "editorMode": "code",
-          "expr": "avg by (service_name) (avg_over_time(mysql_galera_evs_repl_latency_stdev{service_name=~\"$service_name\"}[$interval]) or\navg_over_time(mysql_galera_evs_repl_latency_stdev{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (avg_over_time(mysql_galera_evs_repl_latency_stdev{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\navg_over_time(mysql_galera_evs_repl_latency_stdev{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -823,9 +895,12 @@
           "step": 300
         },
         {
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "editorMode": "code",
-          "expr": "avg by (service_name) (avg_over_time(mysql_galera_evs_repl_latency_avg_seconds{service_name=~\"$service_name\"}[$interval]) or\navg_over_time(mysql_global_status_wsrep_evs_repl_latency{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (avg_over_time(mysql_galera_evs_repl_latency_avg_seconds{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\navg_over_time(mysql_global_status_wsrep_evs_repl_latency{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -835,9 +910,12 @@
           "step": 300
         },
         {
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "editorMode": "code",
-          "expr": "avg by (service_name) (min_over_time(mysql_galera_evs_repl_latency_min_seconds{service_name=~\"$service_name\"}[$interval]) or\nmin_over_time(mysql_galera_evs_repl_latency_min_seconds{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (min_over_time(mysql_galera_evs_repl_latency_min_seconds{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmin_over_time(mysql_galera_evs_repl_latency_min_seconds{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -851,7 +929,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows the length of receive and send queues.",
       "fieldConfig": {
         "defaults": {
@@ -859,6 +940,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -872,6 +954,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -912,7 +995,6 @@
         "y": 11
       },
       "id": 39,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -933,10 +1015,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_local_recv_queue{service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_local_recv_queue{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_local_recv_queue{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_local_recv_queue{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -947,10 +1032,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_local_send_queue{service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_local_send_queue{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_local_send_queue{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_local_send_queue{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -965,7 +1053,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows the number of members currently connected to the cluster.",
       "fieldConfig": {
         "defaults": {
@@ -973,6 +1064,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -986,6 +1078,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1026,7 +1119,6 @@
         "y": 11
       },
       "id": 54,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -1047,10 +1139,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_cluster_size{service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_cluster_size{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_cluster_size{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_cluster_size{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1065,7 +1160,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows the number of FC_PAUSE events sent/received. They are sent by a node when its replication queue gets too full. If a node is sending out FC messages it indicates a problem.",
       "fieldConfig": {
         "defaults": {
@@ -1073,6 +1171,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1086,6 +1185,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1147,7 +1247,6 @@
         "y": 19
       },
       "id": 45,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -1168,10 +1267,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_flow_control_recv{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_recv{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_flow_control_recv{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_recv{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1182,10 +1284,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_flow_control_sent{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_sent{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_flow_control_sent{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_sent{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1197,10 +1302,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_flow_control_paused_ns{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_paused_ns{service_name=~\"$service_name\"}[5m])))/1000000000",
+          "expr": "avg by (service_name) ((rate(mysql_global_status_wsrep_flow_control_paused_ns{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_flow_control_paused_ns{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m])))/1000000000",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1215,7 +1323,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows the average distances between highest and lowest seqno that are concurrently applied, committed and can be possibly applied in parallel (potential degree of parallelization).",
       "fieldConfig": {
         "defaults": {
@@ -1223,6 +1334,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1236,6 +1348,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1276,7 +1389,6 @@
         "y": 19
       },
       "id": 40,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -1297,10 +1409,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_apply_window{service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_apply_window{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_apply_window{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_apply_window{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1311,10 +1426,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_commit_window{service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_commit_window{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_commit_window{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_commit_window{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1326,10 +1444,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_cert_deps_distance{service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_cert_deps_distance{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (max_over_time(mysql_global_status_wsrep_cert_deps_distance{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or\nmax_over_time(mysql_global_status_wsrep_cert_deps_distance{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1344,7 +1465,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows the number of local transactions being committed on this node that failed certification (some other node had a commit that conflicted with ours) – client received deadlock error on commit and also the number of local transactions in flight on this node that were aborted because they locked something an applier thread needed – deadlock error anywhere in an open transaction. Spikes in the graph may indicate writing to the same table potentially the same rows from 2 nodes.",
       "fieldConfig": {
         "defaults": {
@@ -1352,6 +1476,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1365,6 +1490,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1405,7 +1531,6 @@
         "y": 27
       },
       "id": 41,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -1426,10 +1551,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_local_cert_failures{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_local_cert_failures{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_local_cert_failures{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_local_cert_failures{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "Local Cert Failures",
@@ -1439,10 +1567,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_local_bf_aborts{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_local_bf_aborts{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_local_bf_aborts{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_local_bf_aborts{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "Local Bf Aborts",
@@ -1456,255 +1587,18 @@
       "type": "timeseries"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Metrics",
-      "decimals": 2,
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows for how long the node can be taken out of the cluster before SST is required. SST is a full state transfer method.",
-      "editable": true,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 2,
-      "fillGradient": 0,
-      "grid": {},
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "hiddenSeries": false,
-      "id": 47,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": true,
-        "min": true,
-        "show": true,
-        "sort": "avg",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.2.5",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Time (Instant)",
-          "color": "#447ebc",
-          "lines": false,
-          "pointradius": 1,
-          "points": true
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "calculatedInterval": "2m",
-          "datasource": "Metrics",
-          "datasourceErrors": {},
-          "errors": {},
-          "expr": "avg by (service_name) (mysql_galera_gcache_size_bytes{service_name=~\"$service_name\"}) /\nignoring(job) (avg by (service_name) (rate(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[1h])+rate(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[1h])))",
-          "format": "time_series",
-          "interval": "1h",
-          "intervalFactor": 1,
-          "legendFormat": "Time (1h avg)",
-          "metric": "",
-          "refId": "A",
-          "step": 300
-        },
-        {
-          "datasource": "Metrics",
-          "expr": "avg by (service_name) (mysql_galera_gcache_size_bytes{service_name=~\"$service_name\"}) /\nignoring(job) (avg by (service_name) ((rate(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[5m])) + \n(rate(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[5m]))))",
-          "format": "time_series",
-          "hide": false,
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "Time (Instant)",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Available Downtime before SST Required",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 5,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": 2,
-          "format": "s",
-          "logBase": 1,
-          "min": 0,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "min": 0,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Metrics",
-      "decimals": 2,
-      "description": "Shows the count of transactions received from the cluster (any other node) and replicated to the cluster (from this node).",
-      "editable": true,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 2,
-      "fillGradient": 0,
-      "grid": {},
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 35
-      },
-      "hiddenSeries": false,
-      "id": 2,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": true,
-        "min": true,
-        "show": true,
-        "sort": "avg",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.2.5",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "calculatedInterval": "2m",
-          "datasource": "Metrics",
-          "datasourceErrors": {},
-          "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_received{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received{service_name=~\"$service_name\"}[5m]))",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "Transactions Received",
-          "metric": "",
-          "refId": "A",
-          "step": 300
-        },
-        {
-          "calculatedInterval": "2m",
-          "datasource": "Metrics",
-          "datasourceErrors": {},
-          "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_replicated{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated{service_name=~\"$service_name\"}[5m]))",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "Transactions Replicated",
-          "metric": "",
-          "refId": "B",
-          "step": 300,
-          "target": ""
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Galera Writeset Count",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 5,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": 2,
-          "format": "short",
-          "logBase": 1,
-          "min": 0,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "min": 0,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "datasource": "Metrics",
-      "description": "Shows the average transaction size received/replicated.",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1718,6 +1612,284 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time (Instant)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#447ebc",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 0
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 4
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "always"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "id": 47,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.3",
+      "targets": [
+        {
+          "calculatedInterval": "2m",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "datasourceErrors": {},
+          "errors": {},
+          "expr": "avg by (service_name) (mysql_galera_gcache_size_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}) /\nignoring(job) (avg by (service_name) (rate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[1h])+rate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[1h])))",
+          "format": "time_series",
+          "interval": "1h",
+          "intervalFactor": 1,
+          "legendFormat": "Time (1h avg)",
+          "metric": "",
+          "refId": "A",
+          "step": 300
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "avg by (service_name) (mysql_galera_gcache_size_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}) /\nignoring(job) (avg by (service_name) ((rate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m])) + \n(rate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))))",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$interval",
+          "intervalFactor": 1,
+          "legendFormat": "Time (Instant)",
+          "refId": "B"
+        }
+      ],
+      "title": "Available Downtime before SST Required",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the count of transactions received from the cluster (any other node) and replicated to the cluster (from this node).",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 35
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.3",
+      "targets": [
+        {
+          "calculatedInterval": "2m",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "datasourceErrors": {},
+          "errors": {},
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_received{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
+          "interval": "$interval",
+          "intervalFactor": 1,
+          "legendFormat": "Transactions Received",
+          "metric": "",
+          "refId": "A",
+          "step": 300
+        },
+        {
+          "calculatedInterval": "2m",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "datasourceErrors": {},
+          "errors": {},
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
+          "interval": "$interval",
+          "intervalFactor": 1,
+          "legendFormat": "Transactions Replicated",
+          "metric": "",
+          "refId": "B",
+          "step": 300,
+          "target": ""
+        }
+      ],
+      "title": "Galera Writeset Count",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Shows the average transaction size received/replicated.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1758,7 +1930,6 @@
         "y": 35
       },
       "id": 11,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -1779,10 +1950,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[$interval]) / rate(mysql_global_status_wsrep_received{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[5m]) / irate(mysql_global_status_wsrep_received{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) / rate(mysql_global_status_wsrep_received{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]) / irate(mysql_global_status_wsrep_received{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "Incoming Transaction Size",
@@ -1792,10 +1966,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[$interval]) / rate(mysql_global_status_wsrep_replicated{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[5m]) / irate(mysql_global_status_wsrep_replicated{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) / rate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]) / irate(mysql_global_status_wsrep_replicated{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "Replicating Transaction Size",
@@ -1808,7 +1985,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows the bytes of data received from the cluster (any other node) and replicated to the cluster (from this node).",
       "fieldConfig": {
         "defaults": {
@@ -1816,6 +1996,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1829,6 +2010,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1869,7 +2051,6 @@
         "y": 43
       },
       "id": 9,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -1890,10 +2071,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1904,10 +2088,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[5m]))",
+          "expr": "avg by (service_name) (rate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[$interval]) or irate(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[5m]))",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
@@ -1921,7 +2108,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "Metrics",
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Shows the bytes of data received from the cluster (any other node) and replicated to the cluster (from this node).",
       "fieldConfig": {
         "defaults": {
@@ -1929,6 +2119,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1942,6 +2133,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -1982,7 +2174,6 @@
         "y": 43
       },
       "id": 38,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [
@@ -2003,10 +2194,13 @@
       "targets": [
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (increase(mysql_global_status_wsrep_received_bytes{service_name=~\"$service_name\"}[1h]))",
+          "expr": "avg by (service_name) (increase(mysql_global_status_wsrep_received_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[1h]))",
           "interval": "1h",
           "intervalFactor": 1,
           "legendFormat": "Received",
@@ -2016,10 +2210,13 @@
         },
         {
           "calculatedInterval": "2m",
-          "datasource": "Metrics",
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "datasourceErrors": {},
           "errors": {},
-          "expr": "avg by (service_name) (increase(mysql_global_status_wsrep_replicated_bytes{service_name=~\"$service_name\"}[1h]))",
+          "expr": "avg by (service_name) (increase(mysql_global_status_wsrep_replicated_bytes{cluster=\"$cluster\", service_name=~\"$service_name\"}[1h]))",
           "interval": "1h",
           "intervalFactor": 1,
           "legendFormat": "Replicated",
@@ -2034,8 +2231,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 37,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
     "Percona",
     "MySQL_HA",
@@ -2043,6 +2239,312 @@
   ],
   "templating": {
     "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "VictoriaMetrics",
+          "value": "PFToC7FpB3"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "DS_PROMETHEUS",
+        "options": [],
+        "query": "victoriametrics-metrics-datasource",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "PFToC7FpB3"
+        },
+        "definition": "label_values(mysql_galera_variables_info,cluster)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Cluster",
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(mysql_galera_variables_info,cluster)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values(mysql_global_status_wsrep_local_state, node_name)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Node",
+        "multi": true,
+        "name": "node_name",
+        "options": [],
+        "query": {
+          "query": "label_values(mysql_global_status_wsrep_local_state, node_name)",
+          "refId": "Metrics-node_name-Variable-Query"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "pxc_node__1_5263",
+          "value": "pxc_node__1_5263"
+        },
+        "datasource": {
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "PFToC7FpB3"
+        },
+        "definition": "label_values(mysql_galera_status_info,service_name)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Service Name",
+        "multi": false,
+        "name": "service_name",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(mysql_galera_status_info,service_name)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, environment)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Environment",
+        "multi": true,
+        "name": "environment",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, environment)",
+          "refId": "Metrics-environment-Variable-Query"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, replication_set)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Replication Set",
+        "multi": true,
+        "name": "replication_set",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, replication_set)",
+          "refId": "Metrics-replication_set-Variable-Query"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values(pg_stat_database_tup_fetched{cluster=\"$cluster\", service_name=~\"$service_name\",datname!~\"template.*|postgres\"},datname)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Database",
+        "multi": true,
+        "name": "database",
+        "options": [],
+        "query": {
+          "query": "label_values(pg_stat_database_tup_fetched{cluster=\"$cluster\", service_name=~\"$service_name\",datname!~\"template.*|postgres\"},datname)",
+          "refId": "Metrics-database-Variable-Query"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, node_type)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Type",
+        "multi": true,
+        "name": "node_type",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, node_type)",
+          "refId": "Metrics-node_type-Variable-Query"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, service_type)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Type",
+        "multi": true,
+        "name": "service_type",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, service_type)",
+          "refId": "Metrics-service_type-Variable-Query"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values(mysql_info_schema_user_statistics_connected_time_seconds_total{service_name=\"$service_name\"},user)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Username",
+        "multi": true,
+        "name": "username",
+        "options": [],
+        "query": {
+          "query": "label_values(mysql_info_schema_user_statistics_connected_time_seconds_total{service_name=\"$service_name\"},user)",
+          "refId": "Metrics-username-Variable-Query"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "uid": "Metrics"
+        },
+        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, schema)",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Schema",
+        "multi": true,
+        "name": "schema",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, schema)",
+          "refId": "Metrics-schema-Variable-Query"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
       {
         "allFormat": "glob",
         "auto": true,
@@ -2106,280 +2608,6 @@
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values(mysql_global_status_wsrep_local_state, node_name)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Node",
-        "multi": true,
-        "name": "node_name",
-        "options": [],
-        "query": {
-          "query": "label_values(mysql_global_status_wsrep_local_state, node_name)",
-          "refId": "Metrics-node_name-Variable-Query"
-        },
-        "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allFormat": "glob",
-        "allValue": ".*",
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values(mysql_galera_variables_info, wsrep_cluster_name)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Cluster",
-        "multi": true,
-        "multiFormat": "regex values",
-        "name": "cluster",
-        "options": [],
-        "query": {
-          "query": "label_values(mysql_galera_variables_info, wsrep_cluster_name)",
-          "refId": "Metrics-cluster-Variable-Query"
-        },
-        "refresh": 2,
-        "refresh_on_load": false,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allFormat": "glob",
-        "current": {
-          "selected": false,
-          "text": "pxc_node__1_5263",
-          "value": "pxc_node__1_5263"
-        },
-        "datasource": "Metrics",
-        "definition": "query_result(mysql_galera_variables_info{wsrep_cluster_name=~\"$cluster\"} * on(service_name) mysql_global_variables_wsrep_auto_increment_control)",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Service Name",
-        "multi": false,
-        "multiFormat": "regex values",
-        "name": "service_name",
-        "options": [],
-        "query": {
-          "query": "query_result(mysql_galera_variables_info{wsrep_cluster_name=~\"$cluster\"} * on(service_name) mysql_global_variables_wsrep_auto_increment_control)",
-          "refId": "Metrics-service_name-Variable-Query"
-        },
-        "refresh": 2,
-        "refresh_on_load": false,
-        "regex": "/\"([^\"]+)\"/",
-        "skipUrlSync": false,
-        "sort": 5,
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": ".*",
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, environment)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Environment",
-        "multi": true,
-        "name": "environment",
-        "options": [],
-        "query": {
-          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, environment)",
-          "refId": "Metrics-environment-Variable-Query"
-        },
-        "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, replication_set)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Replication Set",
-        "multi": true,
-        "name": "replication_set",
-        "options": [],
-        "query": {
-          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, replication_set)",
-          "refId": "Metrics-replication_set-Variable-Query"
-        },
-        "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values(pg_stat_database_tup_fetched{service_name=~\"$service_name\",datname!~\"template.*|postgres\"},datname)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Database",
-        "multi": true,
-        "name": "database",
-        "options": [],
-        "query": {
-          "query": "label_values(pg_stat_database_tup_fetched{service_name=~\"$service_name\",datname!~\"template.*|postgres\"},datname)",
-          "refId": "Metrics-database-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, node_type)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Type",
-        "multi": true,
-        "name": "node_type",
-        "options": [],
-        "query": {
-          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, node_type)",
-          "refId": "Metrics-node_type-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, service_type)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Type",
-        "multi": true,
-        "name": "service_type",
-        "options": [],
-        "query": {
-          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, service_type)",
-          "refId": "Metrics-service_type-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values(mysql_info_schema_user_statistics_connected_time_seconds_total{service_name=\"$service_name\"},user)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Username",
-        "multi": true,
-        "name": "username",
-        "options": [],
-        "query": {
-          "query": "label_values(mysql_info_schema_user_statistics_connected_time_seconds_total{service_name=\"$service_name\"},user)",
-          "refId": "Metrics-username-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Metrics",
-        "definition": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, schema)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Schema",
-        "multi": true,
-        "name": "schema",
-        "options": [],
-        "query": {
-          "query": "label_values({__name__=~\"pg_up|mysql_up|mongodb_up|proxysql_mysql_status_active_transactions\"}, schema)",
-          "refId": "Metrics-schema-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
       }
     ]
   },
