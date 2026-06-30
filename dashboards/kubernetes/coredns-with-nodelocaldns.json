@@ -33,6 +33,287 @@
   "panels": [
     {
       "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "PFToC7FpB3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "DOWN"
+                },
+                "1": {
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 29,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "up{cluster=~\"$cluster\", pod=~\"$pod\",container=\"$container\"}",
+          "interval": "",
+          "legendFormat": "{{ instance }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CoreDNS - Health Status",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 3
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "rate(process_cpu_seconds_total{cluster=~\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ pod }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CoreDNS - CPU Usage by instance",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 3
+      },
+      "id": 31,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "process_resident_memory_bytes{cluster=~\"$cluster\",pod=~\"$pod\",container=\"$container\"}",
+          "interval": "",
+          "legendFormat": "{{ instance }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CoreDNS - Memory Usage by instance",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
         "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
@@ -110,7 +391,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 0
+        "y": 11
       },
       "id": 1,
       "options": {
@@ -133,10 +414,12 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (proto)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (proto)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}",
+          "range": true,
           "refId": "A",
           "step": 60
         },
@@ -144,10 +427,12 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m]))",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "total",
+          "range": true,
           "refId": "B",
           "step": 60
         }
@@ -246,7 +531,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 0
+        "y": 11
       },
       "id": 12,
       "options": {
@@ -269,9 +554,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (type)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (type)",
           "intervalFactor": 2,
           "legendFormat": "{{type}}",
+          "range": true,
           "refId": "A",
           "step": 60
         }
@@ -358,7 +645,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 0
+        "y": 11
       },
       "id": 2,
       "options": {
@@ -381,9 +668,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (zone)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (zone)",
           "intervalFactor": 2,
           "legendFormat": "{{zone}}",
+          "range": true,
           "refId": "A",
           "step": 60
         },
@@ -391,9 +680,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m]))",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m]))",
           "intervalFactor": 2,
           "legendFormat": "total",
+          "range": true,
           "refId": "B",
           "step": 60
         }
@@ -467,7 +758,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 7
+        "y": 18
       },
       "id": 18,
       "options": {
@@ -490,203 +781,14 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (service)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (container)",
+          "legendFormat": "{{container}}",
+          "range": true,
           "refId": "A"
         }
       ],
       "title": "Requests (by service)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Seperates requests by instance. \nPort 9253: Metrics from NodeLocalCache \nPort 9153: Metrics from Kube-DNS ",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 16,
-        "x": 8,
-        "y": 7
-      },
-      "id": 22,
-      "options": {
-        "alertThreshold": true,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (node,pod)",
-          "refId": "A"
-        }
-      ],
-      "title": "Requests (by node and pod)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Total Requests by service on selected node",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 0,
-        "y": 14
-      },
-      "id": 24,
-      "options": {
-        "alertThreshold": true,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\", node=\"$node\"}[5m])) by (service)",
-          "refId": "A"
-        }
-      ],
-      "title": "Requests (by service) on selected node",
       "type": "timeseries"
     },
     {
@@ -755,7 +857,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 14
+        "y": 18
       },
       "id": 26,
       "options": {
@@ -778,7 +880,10 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (pod)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (pod)",
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -864,7 +969,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 14
+        "y": 18
       },
       "id": 27,
       "options": {
@@ -887,9 +992,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (type, zone)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (type, zone)",
           "intervalFactor": 2,
           "legendFormat": "{{zone}} - {{type}}",
+          "range": true,
           "refId": "A",
           "step": 60
         },
@@ -897,9 +1004,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m]))",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m]))",
           "intervalFactor": 2,
           "legendFormat": "total",
+          "range": true,
           "refId": "B",
           "step": 60
         }
@@ -965,32 +1074,18 @@
               }
             ]
           },
-          "unit": "pps"
+          "unit": "s"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "total"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 11,
+        "h": 8,
+        "w": 12,
         "x": 0,
-        "y": 21
+        "y": 25
       },
-      "id": 10,
+      "id": 3,
       "options": {
-        "alertThreshold": true,
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1009,9 +1104,12 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_do_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m]))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_duration_seconds_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (le, job))",
+          "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "DO",
+          "legendFormat": "99% - {{ job }}",
+          "range": true,
           "refId": "A",
           "step": 40
         },
@@ -1019,111 +1117,111 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m]))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_request_duration_seconds_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (le, job))",
+          "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "total",
+          "legendFormat": "90% - {{ job }}",
+          "range": true,
           "refId": "B",
+          "step": 40
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_request_duration_seconds_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (le, job))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "50% - {{ job }}",
+          "range": true,
+          "refId": "C",
           "step": 40
         }
       ],
-      "title": "Requests (DO bit)",
+      "title": "Responses (duration)",
       "type": "timeseries"
     },
     {
       "datasource": {
+        "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "Requests by pod on select node",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
             }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 13,
-        "x": 11,
-        "y": 21
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 25
       },
-      "id": 20,
+      "id": 32,
       "options": {
-        "alertThreshold": true,
+        "calculate": false,
+        "cellGap": 1,
+        "color": {
+          "exponent": 0.5,
+          "fill": "dark-orange",
+          "mode": "scheme",
+          "reverse": false,
+          "scale": "exponential",
+          "scheme": "RdYlBu",
+          "steps": 64
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "show": true
+        },
+        "rowsFrame": {
+          "layout": "auto"
         },
         "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
+          "mode": "single",
+          "showColorScale": false,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "reverse": false,
+          "unit": "s"
         }
       },
       "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
+            "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",instance=~\"$instance\",node=\"$node\"}[5m])) by (pod)",
+          "editorMode": "code",
+          "expr": "sum(increase(coredns_dns_request_duration_seconds_bucket{cluster=~\"$cluster\", pod=~\"$pod\", container=~\"$container\"}[$__rate_interval])) by (le)",
+          "format": "heatmap",
+          "legendFormat": "{{le}}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Requests (by pod) on selected node",
-      "type": "timeseries"
+      "title": "CoreDNS - DNS request duration",
+      "type": "heatmap"
     },
     {
       "datasource": {
@@ -1240,7 +1338,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 33
       },
       "id": 9,
       "options": {
@@ -1263,9 +1361,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"udp\"}[5m])) by (le,proto))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"udp\"}[5m])) by (le,proto))",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:99 ",
+          "range": true,
           "refId": "A",
           "step": 60
         },
@@ -1273,9 +1373,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"udp\"}[5m])) by (le,proto))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"udp\"}[5m])) by (le,proto))",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:90",
+          "range": true,
           "refId": "B",
           "step": 60
         },
@@ -1283,9 +1385,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"udp\"}[5m])) by (le,proto))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"udp\"}[5m])) by (le,proto))",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:50",
+          "range": true,
           "refId": "C",
           "step": 60
         }
@@ -1359,7 +1463,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 33
       },
       "id": 14,
       "options": {
@@ -1382,10 +1486,12 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"tcp\"}[5m])) by (le,proto))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"tcp\"}[5m])) by (le,proto))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:99 ",
+          "range": true,
           "refId": "A",
           "step": 60
         },
@@ -1393,10 +1499,12 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"tcp\"}[5m])) by (le,proto))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"tcp\"}[5m])) by (le,proto))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:90",
+          "range": true,
           "refId": "B",
           "step": 60
         },
@@ -1404,552 +1512,17 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"tcp\"}[5m])) by (le,proto))",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_request_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"tcp\"}[5m])) by (le,proto))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:50",
+          "range": true,
           "refId": "C",
           "step": 60
         }
       ],
       "title": "Requests (size,tcp)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "pps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 35
-      },
-      "id": 5,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "sum(rate(coredns_dns_responses_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (rcode)",
-          "intervalFactor": 2,
-          "legendFormat": "{{rcode}}",
-          "refId": "A",
-          "step": 40
-        }
-      ],
-      "title": "Responses (by rcode)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 35
-      },
-      "id": 3,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_request_duration_seconds_bucket{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (le, job))",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "99% - {{ job }}",
-          "refId": "A",
-          "step": 40
-        },
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_request_duration_seconds_bucket{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (le, job))",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "90% - {{ job }}",
-          "refId": "B",
-          "step": 40
-        },
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_request_duration_seconds_bucket{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (le, job))",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "50% - {{ job }}",
-          "refId": "C",
-          "step": 40
-        }
-      ],
-      "title": "Responses (duration)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "pps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 42
-      },
-      "id": 28,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "sum(rate(coredns_dns_responses_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (rcode,zone)",
-          "intervalFactor": 2,
-          "legendFormat": "{{rcode}} {{zone}}",
-          "refId": "A",
-          "step": 40
-        }
-      ],
-      "title": "Responses (by rcode,zone)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 42
-      },
-      "id": 13,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"tcp\"}[5m])) by (le,proto)) ",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{proto}}:99%",
-          "refId": "A",
-          "step": 40
-        },
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"tcp\"}[5m])) by (le,proto)) ",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{proto}}:90%",
-          "refId": "B",
-          "step": 40
-        },
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"tcp\"}[5m])) by (le, proto)) ",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{proto}}:50%",
-          "metric": "",
-          "refId": "C",
-          "step": 40
-        }
-      ],
-      "title": "Responses (size, tcp)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 49
-      },
-      "id": 15,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.0",
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "sum(coredns_cache_entries{cluster=\"$cluster\",instance=~\"$instance\"}) by (type)",
-          "intervalFactor": 2,
-          "legendFormat": "{{type}}",
-          "refId": "A",
-          "step": 40
-        }
-      ],
-      "title": "Cache (size)",
       "type": "timeseries"
     },
     {
@@ -2066,8 +1639,8 @@
       "gridPos": {
         "h": 7,
         "w": 12,
-        "x": 12,
-        "y": 49
+        "x": 0,
+        "y": 40
       },
       "id": 8,
       "options": {
@@ -2089,9 +1662,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"udp\"}[5m])) by (le,proto)) ",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"udp\"}[5m])) by (le,proto)) ",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:99%",
+          "range": true,
           "refId": "A",
           "step": 40
         },
@@ -2099,9 +1674,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_response_size_bytes_bucket{instance=\"$instance\",proto=\"udp\"}[5m])) by (le,proto)) ",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"udp\"}[5m])) by (le,proto)) ",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:90%",
+          "range": true,
           "refId": "B",
           "step": 40
         },
@@ -2109,15 +1686,445 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",instance=~\"$instance\",proto=\"udp\"}[5m])) by (le,proto)) ",
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"udp\"}[5m])) by (le,proto)) ",
           "intervalFactor": 2,
           "legendFormat": "{{proto}}:50%",
           "metric": "",
+          "range": true,
           "refId": "C",
           "step": 40
         }
       ],
       "title": "Responses (size, udp)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 40
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.99, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"tcp\"}[5m])) by (le,proto)) ",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{proto}}:99%",
+          "range": true,
+          "refId": "A",
+          "step": 40
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.90, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"tcp\"}[5m])) by (le,proto)) ",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{proto}}:90%",
+          "range": true,
+          "refId": "B",
+          "step": 40
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.50, sum(rate(coredns_dns_response_size_bytes_bucket{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\",proto=\"tcp\"}[5m])) by (le, proto)) ",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{proto}}:50%",
+          "metric": "",
+          "range": true,
+          "refId": "C",
+          "step": 40
+        }
+      ],
+      "title": "Responses (size, tcp)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 47
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_responses_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (rcode)",
+          "intervalFactor": 2,
+          "legendFormat": "{{rcode}}",
+          "range": true,
+          "refId": "A",
+          "step": 40
+        }
+      ],
+      "title": "Responses (by rcode)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 47
+      },
+      "id": 28,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_responses_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (rcode,zone)",
+          "intervalFactor": 2,
+          "legendFormat": "{{rcode}} {{zone}}",
+          "range": true,
+          "refId": "A",
+          "step": 40
+        }
+      ],
+      "title": "Responses (by rcode,zone)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 54
+      },
+      "id": 15,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(coredns_cache_entries{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}) by (type)",
+          "intervalFactor": 2,
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A",
+          "step": 40
+        }
+      ],
+      "title": "Cache (size)",
       "type": "timeseries"
     },
     {
@@ -2198,8 +2205,8 @@
       "gridPos": {
         "h": 7,
         "w": 12,
-        "x": 0,
-        "y": 56
+        "x": 12,
+        "y": 54
       },
       "id": 16,
       "options": {
@@ -2221,9 +2228,11 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_cache_hits_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (type)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_cache_hits_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (type)",
           "intervalFactor": 2,
           "legendFormat": "hits:{{type}}",
+          "range": true,
           "refId": "A",
           "step": 40
         },
@@ -2231,14 +2240,142 @@
           "datasource": {
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "sum(rate(coredns_cache_misses_total{cluster=\"$cluster\",instance=~\"$instance\"}[5m])) by (type)",
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_cache_misses_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m])) by (type)",
           "intervalFactor": 2,
           "legendFormat": "misses",
+          "range": true,
           "refId": "B",
           "step": 40
         }
       ],
       "title": "Cache (hitrate)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pps"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 61
+      },
+      "id": 10,
+      "options": {
+        "alertThreshold": true,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_do_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m]))",
+          "intervalFactor": 2,
+          "legendFormat": "DO",
+          "range": true,
+          "refId": "A",
+          "step": 40
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(coredns_dns_requests_total{cluster=\"$cluster\",pod=~\"$pod\",container=~\"$container\"}[5m]))",
+          "intervalFactor": 2,
+          "legendFormat": "total",
+          "range": true,
+          "refId": "B",
+          "step": 40
+        }
+      ],
+      "title": "Requests (DO bit)",
       "type": "timeseries"
     }
   ],
@@ -2329,6 +2466,30 @@
         "query": {
           "qryType": 1,
           "query": "label_values(coredns_dns_requests_total,pod)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(coredns_dns_requests_total,container)",
+        "includeAll": true,
+        "label": "container",
+        "multi": true,
+        "name": "container",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(coredns_dns_requests_total,container)",
           "refId": "VariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
