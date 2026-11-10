@@ -535,14 +535,14 @@
             "$__all"
           ]
         },
-        "definition": "label_values({cluster=\"$cluster\"},key)",
+        "definition": "label_values(gatus_results_total{cluster=\"$cluster\"},key)",
         "includeAll": true,
         "multi": true,
         "name": "key",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values({cluster=\"$cluster\"},key)",
+          "query": "label_values(gatus_results_total{cluster=\"$cluster\"},key)",
           "refId": "VariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
